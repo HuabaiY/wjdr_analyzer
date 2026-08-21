@@ -1,0 +1,12 @@
+# Local outputs and recoverable archives
+/build/
+/runtime/
+/bak/
+
+# Generated MITM credentials (never commit private keys or local CA files)
+/third_party/game-mitm/ca/
+/runtime/ca/
+
+# Go tooling
+*.test
+coverage.out

@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>无尽冬日 · 协议分析器</title>
+  <link rel="stylesheet" href="app.css">
+</head>
+<body>
+  <div class="window">
+    <header class="titlebar">
+      <strong>无尽冬日 · 协议分析器</strong>
+      <span id="status">● 正在连接</span>
+    </header>
+    <main class="workspace">
+      <section class="topbar" aria-label="抓包控制与筛选">
+        <div class="toolbar-line">
+          <div><h1 id="heading">抓包流量</h1><p>实时 MITM 捕获与协议证据</p></div>
+          <div class="actions"><button id="clear">清空视图</button><button id="clear-history" class="danger">清除历史抓包</button><button class="primary" id="pause">暂停</button></div>
+        </div>
+        <div class="filterbar">
+          <label class="search-field">搜索<input id="filter-search" type="search" placeholder="主机、命令、协议或状态"></label>
+          <label>方向<select id="filter-direction" data-filter="direction"><option value="">全部方向</option></select></label>
+          <label>网络类型<select id="filter-network" data-filter="network"><option value="">全部网络类型</option></select></label>
+          <label class="host-filter">主机<select id="filter-host" data-filter="host"><option value="">全部主机</option></select></label>
+          <label>协议类型<select id="filter-protocol" data-filter="protocol"><option value="">全部协议类型</option></select></label>
+          <label>协议状态<select id="filter-status" data-filter="status"><option value="">全部协议状态</option><option value="success">解码成功</option><option value="failure">解码失败</option></select></label>
+          <label class="command-filter">排除命令<select id="filter-exclude-command"><option value="">不排除命令</option></select></label>
+          <button id="reset-filters" class="quiet">重置筛选</button>
+        </div>
+      </section>
+      <section class="split-view">
+        <section class="traffic-pane" aria-label="流量列表"><div id="view"></div></section>
+        <aside class="detail-pane" aria-label="流量详情"><div id="detail" class="detail-empty"><span class="detail-glyph">⌁</span><strong>选择一条流量</strong><p>左侧选择记录后查看完整协议详情</p></div></aside>
+      </section>
+    </main>
+  </div>
+  <div id="modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-card"><div class="modal-head"><strong id="modal-title">报文</strong><button id="modal-close" aria-label="关闭">×</button></div><pre id="modal-body"></pre></div>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
