@@ -63,16 +63,13 @@ go build -trimpath -ldflags="-s -w -H=windowsgui" -o build/wjdr-analyzer.exe ./c
 ## 目录说明
 
 ```text
-cmd/wjdr-analyzer/       分析器主程序、内嵌页面和单元测试
-cmd/sproto-extract/      Sproto 提取命令
-protocol/generated/      运行时直接使用的协议定义
-third_party/game-mitm/   项目使用的本地 MITM 组件
-runtime/                 源码运行时生成的 CA 和抓包数据
-build/                   EXE 和构建运行数据
-bak/                     可选的本地归档，源码不读取该目录
+cmd/wjdr-analyzer/       分析器主程序、内嵌页面和测试
+cmd/sproto-extract/      Sproto 协议提取工具
+protocol/generated/      程序内置的协议定义
+third_party/game-mitm/   项目使用的 MITM 组件
 ```
 
-`runtime/`、`build/` 和 `bak/` 已加入 `.gitignore`。`bak/` 可以整体移动或删除，程序、构建和默认测试均不依赖它。公共源码发布时，建议只提交源码、协议定义（确认其来源和授权后）、第三方许可证和本 README/LICENSE，不提交抓包、证书、密钥、WebView 缓存或反编译材料。
+程序运行时会在本地生成 `runtime/`，构建命令会使用 `build/` 保存 EXE 和构建运行数据；这两个目录不属于源码目录且已加入 `.gitignore`。`bak/` 是本地归档目录，程序不读取，也不会随仓库发布。公共源码发布时，建议只提交源码、协议定义（确认其来源和授权后）、第三方许可证和本 README/LICENSE，不提交抓包、证书、密钥、WebView 缓存或反编译材料。
 
 ## 第三方组件
 
