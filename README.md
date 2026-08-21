@@ -48,16 +48,14 @@ go run ./cmd/wjdr-analyzer
 - 自动配置 Windows 系统代理；
 - 自动打开无地址栏桌面窗口；
 - 不启动额外的 HTTP 页面端口；
-- 默认使用 `protocol/generated` 中的协议定义；
-- 运行时数据写入 `runtime/`，构建后的运行数据写入 `build/runtime/`。
+- 默认使用 `protocol/generated` 中的协议定义。
 
 退出程序后，系统代理应恢复为原状态；如果进程被强制终止，请手动检查系统代理设置。
 
 ## 构建 Windows EXE
 
 ```powershell
-New-Item -ItemType Directory -Force build | Out-Null
-go build -trimpath -ldflags="-s -w -H=windowsgui" -o build/wjdr-analyzer.exe ./cmd/wjdr-analyzer
+go build -trimpath -ldflags="-s -w -H=windowsgui" -o wjdr-analyzer.exe ./cmd/wjdr-analyzer
 ```
 
 ## 目录说明
@@ -69,16 +67,10 @@ protocol/generated/      程序内置的协议定义
 third_party/game-mitm/   项目使用的 MITM 组件
 ```
 
-程序运行时会在本地生成 `runtime/`，构建命令会使用 `build/` 保存 EXE 和构建运行数据；这两个目录不属于源码目录且已加入 `.gitignore`。`bak/` 是本地归档目录，程序不读取，也不会随仓库发布。公共源码发布时，建议只提交源码、协议定义（确认其来源和授权后）、第三方许可证和本 README/LICENSE，不提交抓包、证书、密钥、WebView 缓存或反编译材料。
-
 ## 第三方组件
 
 本项目包含 `third_party/game-mitm` 的本地代码副本，但当前副本中未发现独立的 `LICENSE`、`COPYING` 或 `NOTICE` 文件。公开分发前必须向上游项目核实授权条款并补齐版权与许可证声明；在授权未确认前，不应将该目录视为自动适用本项目 AGPL-3.0 许可证，也不应对外分发该目录。
 
-## 贡献
-
-欢迎提交修复、协议解析改进、性能优化和文档改进。提交内容必须是你有权发布的代码或材料，不得包含账号凭据、私有证书、真实用户数据或未经授权的第三方资源。所有贡献按本项目许可证发布，除非贡献者另有合法书面约定。
-
 ## 免责声明
 
-本项目仅用于合法的本地调试、协议研究、互操作性验证和软件测试。使用者对自己的使用行为及其后果承担全部责任。项目作者和贡献者不鼓励、协助或授权任何违反法律、合同、服务条款、隐私义务或他人权利的行为。
+本项目仅用于合法的本地调试、协议研究、互操作性验证和软件测试。使用者对自己的使用行为及其后果承担全部责任。项目作者不鼓励、协助或授权任何违反法律、合同、服务条款、隐私义务或他人权利的行为。
